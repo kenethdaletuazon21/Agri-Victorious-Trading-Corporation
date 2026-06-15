@@ -380,7 +380,7 @@ main {
     text-align: center;
     color: var(--primary-darker);
     font-size: 2.2rem;
-    margin-bottom: 1%;
+    margin-bottom: 0.5rem;
     font-weight: 800;
 }
 
@@ -731,7 +731,7 @@ main {
     line-height: 1.8;
     margin-bottom: 1.3rem;
     color: var(--text-light);
-    font-size: 1.5 rem;
+    font-size: 1.0 rem;
 }
 
 /* Contact Information */
@@ -1163,7 +1163,7 @@ footer {
     }
 
     .company-header h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .product-quote {
@@ -1571,7 +1571,7 @@ footer {
     }
 
     .company-header h1 {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 
     .quote-text {
