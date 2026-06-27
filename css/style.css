@@ -724,7 +724,7 @@ main {
     color: var(--primary-darker);
     margin-bottom: 1.5rem;
     font-size: 1.0rem;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .about-section p {
