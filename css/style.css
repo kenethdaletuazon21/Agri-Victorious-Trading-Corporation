@@ -158,7 +158,7 @@ main {
 .banner {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 800px;
     overflow: hidden;
     border-radius: var(--border-radius);
     margin-bottom: 3rem;
@@ -199,6 +199,14 @@ main {
     font-weight: 500;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 0.5px;
+}
+
+.banner-title-img {
+    display: block;
+    width: min(100%, 580px);
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 
 /* Hero Section */
@@ -1300,6 +1308,10 @@ footer {
 
     .banner-overlay p {
         font-size: 0.95rem;
+    }
+
+    .banner-title-img {
+        width: min(100%, 320px);
     }
 
     .banner {
