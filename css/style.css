@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -29,11 +31,17 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
-    line-height: 1.8;
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
     color: var(--text-color);
     background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
 }
 
 /* Header & Navigation */
@@ -81,12 +89,17 @@ header {
 }
 
 .company-name {
-    display: none;
-    font-size: 1.5rem;
+    display: block;
+    font-size: 1rem;
     font-weight: 700;
     white-space: nowrap;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     color: white;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.3;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav-menu {
@@ -100,12 +113,14 @@ header {
 .nav-menu a {
     color: white;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     transition: var(--transition);
     padding: 0.5rem 1rem;
     position: relative;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.4px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-menu a:before {
@@ -191,15 +206,16 @@ main {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     font-weight: 800;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.45);
     letter-spacing: -1px;
 }
 
 .banner-overlay p {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 500;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
     letter-spacing: 0.5px;
+    max-width: 560px;
 }
 
 .banner-title-img {
@@ -222,15 +238,17 @@ main {
 }
 
 .hero h1 {
-    font-size: 2.8rem;
+    font-size: 2.75rem;
     margin-bottom: 1rem;
     font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 1px 2px 8px rgba(0,0,0,0.18);
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 2.5rem;
-    font-weight: 500;
+    font-weight: 400;
     opacity: 0.95;
 }
 
@@ -238,16 +256,17 @@ main {
     display: inline-block;
     background: linear-gradient(135deg, var(--accent-color), var(--gold-light));
     color: var(--primary-darker);
-    padding: 1.2rem 2.5rem;
+    padding: 1.1rem 2.5rem;
     border-radius: var(--border-radius);
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
     transition: var(--transition);
     border: 2px solid var(--accent-dark);
     cursor: pointer;
-    font-size: 1.05rem;
-    box-shadow: 0 6px 16px rgba(45, 95, 52, 0.2);
-    letter-spacing: 0.5px;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(45, 95, 52, 0.22);
+    letter-spacing: 0.4px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .cta-button:hover {
@@ -263,17 +282,18 @@ main {
     display: inline-block;
     background: linear-gradient(135deg, var(--accent-color), var(--gold-light));
     color: var(--primary-darker);
-    padding: 1rem 2rem;
+    padding: 1rem 2.2rem;
     border-radius: var(--border-radius);
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
     transition: var(--transition);
     border: 2px solid var(--accent-dark);
     cursor: pointer;
-    font-size: 1.5rem;
-    box-shadow: 0 6px 16px rgba(45, 95, 52, 0.3);
-    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 18px rgba(45, 95, 52, 0.3);
+    letter-spacing: 0.4px;
     margin-top: 1.5rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .cta-button-banner:hover {
@@ -304,9 +324,10 @@ main {
 }
 
 .hero-subtitle {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     margin-bottom: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
+    opacity: 0.9;
 }
 
 /* Why Choose Us Section */
@@ -320,18 +341,19 @@ main {
 .why-choose-us h2 {
     text-align: center;
     color: var(--primary-darker);
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     margin-bottom: 0.5rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--accent-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-style: italic;
     margin-bottom: 3rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .features-grid {
@@ -350,31 +372,39 @@ main {
     transition: var(--transition);
     border-top: 4px solid var(--accent-color);
     text-align: center;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(27, 107, 47, 0.12);
     background: linear-gradient(135deg, #fafaf8 0%, white 100%);
+    border-top-color: var(--primary-color);
 }
 
 .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
     display: inline-block;
+    background: linear-gradient(135deg, rgba(27,107,47,0.08), rgba(212,175,55,0.1));
+    width: 72px;
+    height: 72px;
+    line-height: 72px;
+    border-radius: 50%;
+    text-align: center;
 }
 
 .feature-card h3 {
     color: var(--primary-darker);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-bottom: 1rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .feature-card p {
     color: var(--text-color);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.7;
     margin-bottom: 0.5rem;
 }
 
@@ -388,9 +418,9 @@ main {
 .featured-products h2 {
     text-align: center;
     color: var(--primary-darker);
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     margin-bottom: 0.5rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .featured-products-container {
@@ -409,19 +439,23 @@ main {
     overflow: hidden;
     position: relative;
     padding: 2rem;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #f0ede5;
+    border-top: 4px solid var(--primary-color);
 }
 
 .featured-product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
     border-color: var(--accent-color);
+    border-top-color: var(--accent-color);
 }
 
 .featured-product-card.highlighted {
     border: 2px solid var(--accent-color);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(229, 193, 88, 0.05) 100%);
+    border-top: 4px solid var(--accent-color);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.04) 0%, rgba(229, 193, 88, 0.06) 100%);
     transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(212,175,55,0.15);
 }
 
 .featured-product-card.highlighted:hover {
@@ -465,31 +499,31 @@ main {
 
 .featured-product-card h3 {
     color: var(--primary-darker);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .featured-product-name {
     color: var(--accent-color);
-    font-weight: 700;
-    font-size: 1.05rem;
+    font-weight: 600;
+    font-size: 0.8rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 }
 
 .featured-product-desc {
     color: var(--text-color);
-    font-size: 1.1rem;
+    font-size: 0.92rem;
     margin-bottom: 1rem;
-    line-height: 1.7;
-    font-weight: 500;
+    line-height: 1.75;
+    font-weight: 400;
 }
 
 .featured-product-desc-en {
     color: var(--text-light);
-    font-size: 1.05rem;
+    font-size: 0.88rem;
     margin-bottom: 1.8rem;
     line-height: 1.7;
     font-style: italic;
@@ -503,29 +537,32 @@ main {
 }
 
 .spec-item {
-    background: rgba(27, 107, 47, 0.1);
+    background: rgba(27, 107, 47, 0.08);
     color: var(--primary-color);
-    padding: 0.7rem 1.3rem;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 0.82rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .featured-cta {
     display: inline-block;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-bright));
     color: white;
-    padding: 0.9rem 1.8rem;
+    padding: 0.85rem 1.8rem;
     border-radius: var(--border-radius);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
     transition: var(--transition);
     border: 2px solid var(--primary-darker);
     cursor: pointer;
     width: 100%;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     box-shadow: 0 4px 12px rgba(0, 176, 80, 0.2);
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
 }
 
 .featured-cta:hover {
@@ -556,7 +593,7 @@ main {
 
 .product-card {
     background: white;
-    border: 2px solid #e8e4dc;
+    border: 1px solid #e8e4dc;
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -564,12 +601,14 @@ main {
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-top: 3px solid var(--primary-color);
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
     border-color: var(--accent-color);
+    border-top-color: var(--accent-color);
 }
 
 .product-image {
@@ -619,25 +658,26 @@ main {
 .product-content h3 {
     color: var(--primary-darker);
     margin-bottom: 0.8rem;
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.3;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
 }
 
 .product-content .product-code {
-    font-size: 0.95rem;
+    font-size: 0.78rem;
     color: var(--accent-color);
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.8rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .product-content .english-name {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     color: var(--text-light);
     font-style: italic;
     margin-bottom: 1rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .featured-product-name {
@@ -650,45 +690,45 @@ main {
 .product-content p {
     color: var(--text-light);
     margin-bottom: 1.2rem;
-    font-size: 1.05rem;
-    line-height: 1.7;
+    font-size: 0.92rem;
+    line-height: 1.75;
     flex-grow: 1;
 }
 
 .featured-product-desc {
-    font-size: 1.05rem !important;
+    font-size: 0.92rem !important;
     color: var(--text-color) !important;
     margin-bottom: 1rem !important;
 }
 
 .featured-product-desc-en {
-    font-size: 1rem !important;
+    font-size: 0.88rem !important;
     color: var(--text-light) !important;
     margin-bottom: 1.2rem !important;
 }
 
 .product-specs {
     background: var(--light-color);
-    padding: 1.2rem;
+    padding: 1.1rem;
     border-radius: 8px;
     margin: 1.5rem 0;
-    font-size: 1.05rem;
+    font-size: 0.88rem;
 }
 
 .product-specs p {
-    margin: 0.6rem 0;
+    margin: 0.5rem 0;
     color: var(--primary-color);
     font-weight: 600;
 }
 
 .product-unit {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
-    padding: 1rem;
+    padding: 0.9rem;
     background: #f8f7f3;
     border-left: 3px solid var(--accent-color);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .product-price {
@@ -705,12 +745,13 @@ main {
     border: 2px solid var(--primary-darker);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: 800;
+    font-weight: 700;
     width: 100%;
     transition: var(--transition);
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
     box-shadow: 0 4px 12px rgba(0, 176, 80, 0.3);
+    font-family: 'Poppins', sans-serif;
 }
 
 .add-to-cart:hover {
@@ -722,25 +763,27 @@ main {
 /* About Section */
 .about-section {
     margin: 3rem 0;
-    padding: 3rem 2rem;
+    padding: 3rem 2.5rem;
     background: linear-gradient(135deg, var(--light-color) 0%, #fafaf8 100%);
     border-radius: var(--border-radius);
     border-left: 5px solid var(--accent-color);
+    box-shadow: 0 2px 12px rgba(27,107,47,0.06);
 }
 
 .about-section h1,
 .about-section h2 {
     color: var(--primary-darker);
     margin-bottom: 1.5rem;
-    font-size: 2.0rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
 }
 
 .about-section p {
     line-height: 1.8;
     margin-bottom: 1.3rem;
     color: var(--text-light);
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 /* Contact Information */
@@ -758,24 +801,26 @@ main {
     border-left: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
     transition: var(--transition);
+    border-top: 2px solid rgba(212,175,55,0.15);
 }
 
 .contact-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+    border-left-color: var(--primary-color);
 }
 
 .contact-card h3 {
     color: var(--primary-darker);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 .contact-card p {
     margin: 0.7rem 0;
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
 }
 
 .contact-card a {
@@ -803,8 +848,8 @@ main {
 .contact-form h2 {
     color: var(--primary-darker);
     margin-bottom: 2rem;
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 1.65rem;
+    font-weight: 700;
 }
 
 .form-group {
@@ -814,22 +859,24 @@ main {
 .form-group label {
     display: block;
     margin-bottom: 0.6rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-darker);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 0.3px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.9rem 1rem;
-    border: 1.5px solid #e8e4dc;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid #e0dbd2;
     border-radius: var(--border-radius);
-    font-family: inherit;
-    font-size: 0.95rem;
+    font-family: 'Open Sans', inherit;
+    font-size: 0.92rem;
     background: white;
     transition: var(--transition);
+    color: var(--text-color);
 }
 
 .form-group textarea {
@@ -852,12 +899,13 @@ main {
     border: 2px solid var(--primary-darker);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 800;
+    font-size: 0.95rem;
+    font-weight: 700;
     width: 100%;
     transition: var(--transition);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     box-shadow: 0 6px 16px rgba(45, 95, 52, 0.25);
+    font-family: 'Poppins', sans-serif;
 }
 
 .submit-button:hover {
@@ -879,26 +927,29 @@ main {
     border-left: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
     transition: var(--transition);
+    border-top: 1px solid #f0ede5;
 }
 
 .resource-item:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateX(4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    transform: translateX(5px);
+    border-left-color: var(--primary-color);
 }
 
 .resource-item h3 {
     color: var(--primary-darker);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
 
 .resource-item .english-label {
     font-style: italic;
     color: var(--text-light);
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .resource-item p {
@@ -917,7 +968,8 @@ main {
     padding-left: 1.8rem;
     position: relative;
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.7;
 }
 
 .resource-list li:before {
@@ -952,13 +1004,15 @@ footer {
     color: var(--accent-color);
     margin-bottom: 1rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
+    font-size: 1rem;
 }
 
 .footer-section p {
     margin-bottom: 0.6rem;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     opacity: 0.95;
+    line-height: 1.65;
 }
 
 .social-links {
@@ -969,12 +1023,13 @@ footer {
 .social-icon {
     color: white;
     text-decoration: none;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     border: 1.5px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--border-radius);
     transition: var(--transition);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .social-icon:hover {
@@ -986,9 +1041,11 @@ footer {
 .footer-bottom {
     text-align: center;
     padding: 1.5rem 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    background-color: rgba(0, 0, 0, 0.15);
-    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: rgba(0, 0, 0, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.2px;
+    opacity: 0.9;
 }
 
 /* Responsive Design - Tablet (768px and below) */
@@ -1036,7 +1093,8 @@ footer {
     }
 
     .company-name {
-        font-size: 1.1rem;
+        font-size: 0.85rem;
+        max-width: 180px;
     }
 
     .nav-container {
@@ -1082,11 +1140,11 @@ footer {
     }
 
     .product-content h3 {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
     }
 
     .product-content p {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
     }
 
     .about-section {
@@ -1096,7 +1154,7 @@ footer {
 
     .about-section h1,
     .about-section h2 {
-        font-size: 1.0rem;
+        font-size: 1.6rem;
     }
 
     .about-section p {
@@ -1214,7 +1272,7 @@ footer {
     }
 
     .why-choose-us h2 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         margin-bottom: 2rem;
     }
 
@@ -1241,7 +1299,7 @@ footer {
     }
 
     .featured-products h2 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         margin-bottom: 2rem;
     }
 
@@ -1264,7 +1322,7 @@ footer {
     }
 
     .featured-product-card h3 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -1282,13 +1340,14 @@ footer {
     }
 
     .company-name {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         white-space: normal;
         line-height: 1.3;
         flex-shrink: 1;
         min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 140px;
     }
 
     .nav-container {
@@ -1440,14 +1499,14 @@ footer {
 
     .about-section h1,
     .about-section h2 {
-        font-size: 1.0rem;
+        font-size: 1.45rem;
         margin-bottom: 1rem;
     }
 
     .about-section p {
         font-size: 0.9rem;
         margin-bottom: 1rem;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 
     .contact-info {
@@ -1624,7 +1683,7 @@ footer {
     }
 
     .hero-subtitle {
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
     }
 
     .cta-button {
@@ -1819,7 +1878,7 @@ footer {
 
     .about-section h1,
     .about-section h2 {
-        font-size: 1.0rem;
+        font-size: 1.3rem;
     }
 
     .about-section p {
@@ -1873,11 +1932,11 @@ footer {
 }
 
 .company-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-darker);
-    font-weight: 800;
+    font-weight: 700;
     margin: 0;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
 }
 
 /* Product Quote Section */
@@ -1893,25 +1952,27 @@ footer {
 .quote-text {
     color: var(--primary-darker);
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     margin: 0;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Contact Button */
 .contact-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-bright));
     color: white;
-    padding: 1.2rem 2.2rem;
+    padding: 1rem 2rem;
     border: 2px solid var(--primary-darker);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: 800;
+    font-weight: 700;
     width: 100%;
     transition: var(--transition);
-    font-size: 1.15rem;
-    letter-spacing: 0.5px;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
     box-shadow: 0 4px 12px rgba(0, 176, 80, 0.3);
+    font-family: 'Poppins', sans-serif;
 }
 
 .contact-btn:hover {
@@ -1931,12 +1992,12 @@ footer {
 }
 
 .tagalog-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--primary-darker);
     font-weight: 600;
     margin-bottom: 0.6rem;
     line-height: 1.8;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 .tagalog-text.compact {
@@ -1944,12 +2005,12 @@ footer {
 }
 
 .english-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-color);
     font-style: italic;
-    line-height: 1.7;
+    line-height: 1.75;
     padding-left: 1rem;
-    border-left: 4px solid var(--accent-color);
+    border-left: 3px solid var(--accent-color);
     margin-bottom: 1.5rem;
 }
 
@@ -2002,19 +2063,22 @@ footer {
     color: var(--primary-color);
     font-weight: 700;
     margin-bottom: 0.8rem;
+    font-size: 1.05rem;
 }
 
 .faq-item p {
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.75;
+    font-size: 0.92rem;
 }
 
 /* Resource Titles */
 .resource-title {
     color: var(--primary-color);
     margin: 2.5rem 0 1.5rem 0;
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
 }
 
 .resource-note {
@@ -2067,11 +2131,13 @@ footer {
     border-top: 4px solid var(--accent-color);
     box-shadow: var(--shadow);
     transition: var(--transition);
+    border-bottom: 1px solid rgba(212,175,55,0.1);
 }
 
 .value-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 28px rgba(27, 107, 47, 0.12);
+    border-top-color: var(--primary-color);
 }
 
 .value-icon {
@@ -2081,8 +2147,8 @@ footer {
 
 .value-card h4 {
     color: var(--primary-darker);
-    font-size: 1.2rem;
-    font-weight: 800;
+    font-size: 1.05rem;
+    font-weight: 700;
     margin-bottom: 0.8rem;
 }
 
@@ -2093,6 +2159,6 @@ footer {
 
 .value-card p {
     color: var(--text-light);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.9rem;
+    line-height: 1.75;
 }
