@@ -145,8 +145,21 @@ function setActiveNav() {
 
 document.addEventListener('DOMContentLoaded', setActiveNav);
 
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'AgriAdmin2026!';
+const STORAGE_ADMIN_AUTH = 'agri_admin_authenticated';
+const STORAGE_GALLERY = 'agri_gallery_items';
+
 function getSiteBasePath() {
     return window.location.pathname.toLowerCase().includes('/pages/') ? '../' : '';
+}
+
+function isAdminAuthenticated() {
+    return localStorage.getItem(STORAGE_ADMIN_AUTH) === 'true';
+}
+
+function setAdminAuthenticated(isAuthenticated) {
+    localStorage.setItem(STORAGE_ADMIN_AUTH, isAuthenticated ? 'true' : 'false');
 }
 
 function initAdminNav() {
@@ -156,26 +169,92 @@ function initAdminNav() {
         return;
     }
 
-    const statusUrl = `${getSiteBasePath()}includes/admin-status.php`;
+    if (isAdminAuthenticated()) {
+        adminNavItems.forEach(item => item.classList.remove('hidden'));
+    } else {
+        adminNavItems.forEach(item => item.classList.add('hidden'));
+    }
+}
 
-    fetch(statusUrl, {
-        credentials: 'same-origin'
-    })
+function getStoredGalleryItems() {
+    const raw = localStorage.getItem(STORAGE_GALLERY);
+
+    if (!raw) {
+        return [];
+    }
+
+    try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+function setStoredGalleryItems(items) {
+    localStorage.setItem(STORAGE_GALLERY, JSON.stringify(items));
+}
+
+function loadDefaultGallerySeed() {
+    const existing = getStoredGalleryItems();
+    if (existing.length > 0) {
+        return Promise.resolve(existing);
+    }
+
+    const source = `${getSiteBasePath()}data/gallery.json`;
+    return fetch(source)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Unable to load admin status.');
+                throw new Error('Unable to load default gallery seed.');
             }
-
             return response.json();
         })
-        .then(data => {
-            if (data.authenticated) {
-                adminNavItems.forEach(item => item.classList.remove('hidden'));
+        .then(items => {
+            if (Array.isArray(items) && items.length > 0) {
+                setStoredGalleryItems(items);
+                return items;
             }
+            return [];
         })
-        .catch(() => {
-            adminNavItems.forEach(item => item.classList.add('hidden'));
-        });
+        .catch(() => []);
+}
+
+function resolveImagePath(imagePath) {
+    if (!imagePath) {
+        return '';
+    }
+
+    if (imagePath.startsWith('data:') || imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+    }
+
+    if (imagePath.startsWith('../') || imagePath.startsWith('./')) {
+        return imagePath;
+    }
+
+    return `${getSiteBasePath()}${imagePath}`;
+}
+
+function renderGalleryItems(container, items) {
+    if (!Array.isArray(items) || items.length === 0) {
+        container.innerHTML = '<p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>';
+        return;
+    }
+
+    container.innerHTML = items.map(item => {
+        const resolvedImage = resolveImagePath(item.image);
+        return `
+            <figure class="gallery-card">
+                <a href="${resolvedImage}" target="_blank" rel="noopener noreferrer">
+                    <img src="${resolvedImage}" alt="${escapeHtml(item.title || 'Gallery image')}">
+                </a>
+                <figcaption>
+                    <strong>${escapeHtml(item.title || 'Gallery Photo')}</strong>
+                    <span>${escapeHtml(item.description || '')}</span>
+                </figcaption>
+            </figure>
+        `;
+    }).join('');
 }
 
 function loadPublicGallery() {
@@ -185,39 +264,130 @@ function loadPublicGallery() {
         return;
     }
 
-    const endpoint = galleryGrid.dataset.galleryEndpoint || `${getSiteBasePath()}includes/gallery-feed.php`;
+    const localItems = getStoredGalleryItems();
+    if (localItems.length > 0) {
+        renderGalleryItems(galleryGrid, localItems);
+        return;
+    }
 
-    fetch(endpoint, {
-        credentials: 'same-origin'
-    })
+    const source = galleryGrid.dataset.gallerySource || `${getSiteBasePath()}data/gallery.json`;
+    fetch(source)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Unable to load gallery.');
+                throw new Error('Unable to load gallery source.');
             }
-
             return response.json();
         })
         .then(items => {
-            if (!Array.isArray(items) || items.length === 0) {
-                galleryGrid.innerHTML = '<p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>';
-                return;
+            if (Array.isArray(items) && items.length > 0) {
+                setStoredGalleryItems(items);
+                renderGalleryItems(galleryGrid, items);
+            } else {
+                renderGalleryItems(galleryGrid, []);
             }
-
-            galleryGrid.innerHTML = items.map(item => `
-                <figure class="gallery-card">
-                    <a href="../${item.image}" target="_blank" rel="noopener noreferrer">
-                        <img src="../${item.image}" alt="${escapeHtml(item.title || 'Gallery image')}">
-                    </a>
-                    <figcaption>
-                        <strong>${escapeHtml(item.title || 'Gallery Photo')}</strong>
-                        <span>${escapeHtml(item.description || '')}</span>
-                    </figcaption>
-                </figure>
-            `).join('');
         })
         .catch(() => {
             galleryGrid.innerHTML = '<p class="gallery-empty">The gallery is temporarily unavailable.</p>';
         });
+}
+
+function initAdminPage() {
+    const adminPage = document.getElementById('admin-page');
+    if (!adminPage) {
+        return;
+    }
+
+    const loginSection = document.getElementById('admin-login-section');
+    const managerSection = document.getElementById('admin-manager-section');
+    const loginForm = document.getElementById('admin-login-form');
+    const uploadForm = document.getElementById('admin-upload-form');
+    const logoutBtn = document.getElementById('admin-logout-btn');
+    const statusMessage = document.getElementById('admin-status-message');
+    const adminGallery = document.getElementById('admin-gallery-grid');
+
+    const updateAdminView = () => {
+        const authenticated = isAdminAuthenticated();
+        loginSection.classList.toggle('hidden', authenticated);
+        managerSection.classList.toggle('hidden', !authenticated);
+        initAdminNav();
+        renderGalleryItems(adminGallery, getStoredGalleryItems());
+    };
+
+    const showStatus = (message, type) => {
+        statusMessage.textContent = message;
+        statusMessage.classList.remove('hidden', 'success', 'error');
+        statusMessage.classList.add(type);
+    };
+
+    loginForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(loginForm);
+        const username = String(formData.get('username') || '').trim();
+        const password = String(formData.get('password') || '');
+
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            setAdminAuthenticated(true);
+            showStatus('Admin login successful.', 'success');
+            loginForm.reset();
+            updateAdminView();
+            return;
+        }
+
+        showStatus('Invalid admin username or password.', 'error');
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        setAdminAuthenticated(false);
+        showStatus('You have been logged out.', 'success');
+        updateAdminView();
+    });
+
+    uploadForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(uploadForm);
+        const title = String(formData.get('title') || '').trim();
+        const description = String(formData.get('description') || '').trim();
+        const file = formData.get('gallery_photo');
+
+        if (!(file instanceof File) || file.size === 0) {
+            showStatus('Please choose an image to upload.', 'error');
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            showStatus('Image must be 5 MB or smaller.', 'error');
+            return;
+        }
+
+        const extension = file.name.split('.').pop().toLowerCase();
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        if (!allowedExtensions.includes(extension)) {
+            showStatus('Only JPG, JPEG, PNG, WEBP, and GIF files are allowed.', 'error');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const items = getStoredGalleryItems();
+            items.unshift({
+                title: title || 'Gallery Photo',
+                description,
+                image: String(reader.result),
+                uploadedAt: new Date().toISOString()
+            });
+            setStoredGalleryItems(items);
+            uploadForm.reset();
+            showStatus('Gallery image uploaded successfully.', 'success');
+            renderGalleryItems(adminGallery, items);
+        };
+        reader.onerror = () => {
+            showStatus('Unable to process the selected image.', 'error');
+        };
+        reader.readAsDataURL(file);
+    });
+
+    loadDefaultGallerySeed().finally(updateAdminView);
 }
 
 function escapeHtml(value) {
@@ -228,3 +398,5 @@ function escapeHtml(value) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
 }
+
+document.addEventListener('DOMContentLoaded', initAdminPage);
