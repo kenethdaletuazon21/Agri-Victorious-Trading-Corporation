@@ -2188,6 +2188,24 @@ footer {
     color: var(--primary-darker);
 }
 
+.gallery-delete-btn {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.gallery-delete-btn:hover {
+    background: #9f2d20;
+}
+
 .gallery-empty {
     padding: 1.5rem;
     background: var(--light-color);

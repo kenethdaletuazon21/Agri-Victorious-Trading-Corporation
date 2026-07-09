@@ -238,14 +238,20 @@ function resolveImagePath(imagePath) {
     return `${getSiteBasePath()}${imagePath}`;
 }
 
-function renderGalleryItems(container, items) {
+function renderGalleryItems(container, items, options = {}) {
+    const showDeleteButtons = Boolean(options.showDeleteButtons);
+
     if (!Array.isArray(items) || items.length === 0) {
         container.innerHTML = '<p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>';
         return;
     }
 
-    container.innerHTML = items.map(item => {
+    container.innerHTML = items.map((item, index) => {
         const resolvedImage = resolveImagePath(item.image);
+        const deleteControl = showDeleteButtons
+            ? `<button type="button" class="gallery-delete-btn" data-gallery-index="${index}" aria-label="Delete ${escapeHtml(item.title || 'Gallery Photo')}">Delete</button>`
+            : '';
+
         return `
             <figure class="gallery-card">
                 <a href="${resolvedImage}" target="_blank" rel="noopener noreferrer">
@@ -254,6 +260,7 @@ function renderGalleryItems(container, items) {
                 <figcaption>
                     <strong>${escapeHtml(item.title || 'Gallery Photo')}</strong>
                     <span>${escapeHtml(item.description || '')}</span>
+                    ${deleteControl}
                 </figcaption>
             </figure>
         `;
@@ -314,7 +321,7 @@ function initAdminPage() {
         loginSection.classList.toggle('hidden', authenticated);
         managerSection.classList.toggle('hidden', !authenticated);
         initAdminNav();
-        renderGalleryItems(adminGallery, getStoredGalleryItems());
+        renderGalleryItems(adminGallery, getStoredGalleryItems(), { showDeleteButtons: authenticated });
     };
 
     const showStatus = (message, type) => {
@@ -389,6 +396,33 @@ function initAdminPage() {
             showStatus('Unable to process the selected image.', 'error');
         };
         reader.readAsDataURL(file);
+    });
+
+    adminGallery.addEventListener('click', event => {
+        const deleteButton = event.target.closest('.gallery-delete-btn');
+
+        if (!deleteButton || !isAdminAuthenticated()) {
+            return;
+        }
+
+        const index = Number(deleteButton.dataset.galleryIndex);
+        const items = getStoredGalleryItems();
+
+        if (!Number.isInteger(index) || index < 0 || index >= items.length) {
+            showStatus('Unable to delete the selected image.', 'error');
+            return;
+        }
+
+        const photoTitle = items[index]?.title || 'this photo';
+        const shouldDelete = window.confirm(`Delete ${photoTitle}? This action cannot be undone.`);
+        if (!shouldDelete) {
+            return;
+        }
+
+        items.splice(index, 1);
+        setStoredGalleryItems(items);
+        renderGalleryItems(adminGallery, items, { showDeleteButtons: true });
+        showStatus('Gallery image deleted successfully.', 'success');
     });
 
     loadDefaultGallerySeed().finally(updateAdminView);
