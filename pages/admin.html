@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Agri-Victorious Trading Corporation</title>
+    <script>
+        (function() {
+            const path = window.location.pathname;
+            const match = path.match(/\/([^\/]+)\//) || path.match(/^\/$/);
+            window.SITE_BASE = (match && match[1]) ? '/' + match[1] + '/' : '/';
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
@@ -33,7 +40,7 @@
         </nav>
     </header>
     <main>
-        <section class="admin-panel">
+        <section class="admin-panel" id="admin-page">
             <div class="admin-card">
                 <h1>Admin Panel</h1>
                 <p>This GitHub Pages-compatible admin panel uses browser storage for login and gallery updates.</p>

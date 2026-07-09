@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources - Agri-Victorious Trading Corporation</title>
+    <script>
+        (function() {
+            const path = window.location.pathname;
+            const match = path.match(/\/([^\/]+)\//) || path.match(/^\/$/);
+            window.SITE_BASE = (match && match[1]) ? '/' + match[1] + '/' : '/';
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
@@ -48,7 +55,7 @@
             <h2>Gallery</h2>
             <p>Photos uploaded by the admin will appear here for all viewers before the fertilizer application guides.</p>
         </div>
-        <div id="gallery-grid" class="gallery-grid" data-gallery-source="../data/gallery.json">
+        <div id="gallery-grid\" class="gallery-grid\">
             <p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>
         </div>
     </section>

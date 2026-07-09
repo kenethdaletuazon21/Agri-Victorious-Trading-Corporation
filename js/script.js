@@ -151,7 +151,9 @@ const STORAGE_ADMIN_AUTH = 'agri_admin_authenticated';
 const STORAGE_GALLERY = 'agri_gallery_items';
 
 function getSiteBasePath() {
-    return window.location.pathname.toLowerCase().includes('/pages/') ? '../' : '';
+    const isPages = window.location.pathname.toLowerCase().includes('/pages/');
+    const basePrefix = window.SITE_BASE || '/';
+    return isPages ? (basePrefix === '/' ? '../' : basePrefix) : basePrefix;
 }
 
 function isAdminAuthenticated() {
@@ -201,7 +203,8 @@ function loadDefaultGallerySeed() {
         return Promise.resolve(existing);
     }
 
-    const source = `${getSiteBasePath()}data/gallery.json`;
+    const base = window.SITE_BASE || '/';
+    const source = `${base}data/gallery.json`;
     return fetch(source)
         .then(response => {
             if (!response.ok) {
@@ -270,7 +273,8 @@ function loadPublicGallery() {
         return;
     }
 
-    const source = galleryGrid.dataset.gallerySource || `${getSiteBasePath()}data/gallery.json`;
+    const base = window.SITE_BASE || '/';
+    const source = galleryGrid.dataset.gallerySource || `${base}data/gallery.json`;
     fetch(source)
         .then(response => {
             if (!response.ok) {
