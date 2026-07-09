@@ -17,11 +17,12 @@
                     <img src="../images/logo1.png" alt="Logo" class="logo">
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li class="admin-nav-item hidden"><a href="/admin">Admin</a></li>
                 </ul>
                 <div class="hamburger">
                     <span></span>
@@ -39,6 +40,16 @@
         <div class="bilingual-block">
             <p class="tagalog-text">Matuto kung paano properly i-apply ang aming fertilizer products para sa maximum crop yield at soil health. Bawat crop type ay may specific nutritional requirements para sa optimal growth at harvest.</p>
             <p class="english-text">Learn how to properly apply our fertilizer products for maximum crop yield and soil health. Each crop type has specific nutritional requirements for optimal growth and harvest.</p>
+        </div>
+    </section>
+
+    <section class="media-section">
+        <div class="section-heading-block">
+            <h2>Gallery</h2>
+            <p>Photos uploaded by the admin will appear here for all viewers before the fertilizer application guides.</p>
+        </div>
+        <div id="gallery-grid" class="gallery-grid" data-gallery-endpoint="../includes/gallery-feed.php">
+            <p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>
         </div>
     </section>
 

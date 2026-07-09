@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    initAdminNav();
+    loadPublicGallery();
 });
 
 // Add to Cart Function
@@ -141,3 +144,87 @@ function setActiveNav() {
 }
 
 document.addEventListener('DOMContentLoaded', setActiveNav);
+
+function getSiteBasePath() {
+    return window.location.pathname.toLowerCase().includes('/pages/') ? '../' : '';
+}
+
+function initAdminNav() {
+    const adminNavItems = document.querySelectorAll('.admin-nav-item');
+
+    if (!adminNavItems.length) {
+        return;
+    }
+
+    const statusUrl = `${getSiteBasePath()}includes/admin-status.php`;
+
+    fetch(statusUrl, {
+        credentials: 'same-origin'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Unable to load admin status.');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            if (data.authenticated) {
+                adminNavItems.forEach(item => item.classList.remove('hidden'));
+            }
+        })
+        .catch(() => {
+            adminNavItems.forEach(item => item.classList.add('hidden'));
+        });
+}
+
+function loadPublicGallery() {
+    const galleryGrid = document.getElementById('gallery-grid');
+
+    if (!galleryGrid) {
+        return;
+    }
+
+    const endpoint = galleryGrid.dataset.galleryEndpoint || `${getSiteBasePath()}includes/gallery-feed.php`;
+
+    fetch(endpoint, {
+        credentials: 'same-origin'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Unable to load gallery.');
+            }
+
+            return response.json();
+        })
+        .then(items => {
+            if (!Array.isArray(items) || items.length === 0) {
+                galleryGrid.innerHTML = '<p class="gallery-empty">Gallery photos will appear here once they are uploaded.</p>';
+                return;
+            }
+
+            galleryGrid.innerHTML = items.map(item => `
+                <figure class="gallery-card">
+                    <a href="../${item.image}" target="_blank" rel="noopener noreferrer">
+                        <img src="../${item.image}" alt="${escapeHtml(item.title || 'Gallery image')}">
+                    </a>
+                    <figcaption>
+                        <strong>${escapeHtml(item.title || 'Gallery Photo')}</strong>
+                        <span>${escapeHtml(item.description || '')}</span>
+                    </figcaption>
+                </figure>
+            `).join('');
+        })
+        .catch(() => {
+            galleryGrid.innerHTML = '<p class="gallery-empty">The gallery is temporarily unavailable.</p>';
+        });
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}

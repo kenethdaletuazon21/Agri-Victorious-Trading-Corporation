@@ -13,6 +13,10 @@ define('COMPANY_PHONE_2', '+639055012888');
 define('COMPANY_ADDRESS_1', 'South Triangle Diliman, Diliman Quezon City');
 define('COMPANY_ADDRESS_2', 'Tuguegarao City, Cagayan, Region 2, Cagayan Valley');
 
+// Admin Credentials
+define('ADMIN_USERNAME', 'admin');
+define('ADMIN_PASSWORD', 'AgriAdmin2026!');
+
 // Session start
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

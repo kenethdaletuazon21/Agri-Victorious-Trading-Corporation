@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Gallery Photo A",
+		"description": "Agricultural gallery image A.",
+		"image": "images/gallery/a.png",
+		"uploadedAt": "2026-07-09T00:00:00+08:00"
+	},
+	{
+		"title": "Gallery Photo B",
+		"description": "Agricultural gallery image B.",
+		"image": "images/gallery/b.png",
+		"uploadedAt": "2026-07-09T00:01:00+08:00"
+	},
+	{
+		"title": "Gallery Photo C",
+		"description": "Agricultural gallery image C.",
+		"image": "images/gallery/c.png",
+		"uploadedAt": "2026-07-09T00:02:00+08:00"
+	},
+	{
+		"title": "Gallery Photo D",
+		"description": "Agricultural gallery image D.",
+		"image": "images/gallery/d.png",
+		"uploadedAt": "2026-07-09T00:03:00+08:00"
+	},
+	{
+		"title": "Gallery Photo E",
+		"description": "Agricultural gallery image E.",
+		"image": "images/gallery/e.png",
+		"uploadedAt": "2026-07-09T00:04:00+08:00"
+	}
+]
