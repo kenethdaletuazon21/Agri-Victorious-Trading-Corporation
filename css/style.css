@@ -105,7 +105,7 @@ header {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 2.8rem;
     flex: 2;
     justify-content: center;
 }
